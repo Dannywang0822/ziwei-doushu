@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import StudioFrame from '@/components/studio/StudioFrame';
+import { DEMO_URL, SOURCE_REPO_URL, UPSTREAM_REPO_URL } from '@/lib/site';
 
 const STEPS = [
   { n: '01', title: '填写出生', body: '公历、钟点、性别和出生地。时辰按真太阳时折算，晚子时沿用引擎自己的换日规则。' },
   { n: '02', title: '看完整的盘', body: '十二宫、四化、大限和流年都在盘上。这一步不访问网络。' },
-  { n: '03', title: '再问模型', body: '总览、分宫和合盘走你自己的 OpenAI 兼容接口。没配密钥时，页面会直接说明。' },
+  { n: '03', title: '导出盘面文件', body: '排盘页和合盘页都能下载一份 Markdown：可读的完整盘面，文末是引擎的完整 JSON。把文件交给分析机器人「紫微斗数」。没有 API 密钥也可以。xAI 解读是可选的。' },
 ];
 
 export default function HomePage() {
@@ -16,8 +17,8 @@ export default function HomePage() {
           <p className="xy-kicker">ZIWEI STUDIO</p>
           <h1 className="xy-title">星垣</h1>
           <p className="xy-lead">
-            一张可以核对的紫微斗数命盘，加上你自己的模型来读它。
-            排盘在本地完成，解读只在你点下去之后才发出去。
+            本地排好紫微斗数命盘，再导出一份完整文件交给分析机器人「紫微斗数」。
+            排盘和导出都不需要 API 密钥。xAI 解读是可选的，没有额度也可以用。
           </p>
           <div className="xy-actions">
             <Link href="/chart" className="xy-primary">起一张盘</Link>
@@ -43,9 +44,15 @@ export default function HomePage() {
             <li>没有账号、会员和支付。出生信息留在这台浏览器里，只有解读请求会送到你配置的接口。</li>
           </ul>
           <p className="xy-source">
-            排盘引擎继承自
+            在线演示：
             {' '}
-            <a href="https://github.com/Renhuai123/ziwei-doushu">紫微研究 / Renhuai123/ziwei-doushu</a>
+            <a href={DEMO_URL}>dannywang0822.github.io/ziwei-doushu</a>
+            。源码：
+            {' '}
+            <a href={SOURCE_REPO_URL}>Dannywang0822/ziwei-doushu</a>
+            。排盘引擎继承自
+            {' '}
+            <a href={UPSTREAM_REPO_URL}>紫微研究 / Renhuai123/ziwei-doushu</a>
             ，代码协议 MIT。古籍库仍在
             {' '}
             <Link href="/library">古籍</Link>

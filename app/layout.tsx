@@ -5,7 +5,7 @@ import { SITE_URL } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: '星垣 · 紫微斗数',
-  description: '本地排盘，并用你自己的 OpenAI 兼容接口阅读命盘与合盘。',
+  description: '星垣：本地排盘，导出完整命盘文件交给紫微斗数。xAI 解读可选，没有 API 密钥也能用。',
   keywords: '紫微斗数, 命盘, 合盘, 四化, 星垣',
   metadataBase: new URL(SITE_URL),
   alternates: {
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: '星垣 · 紫微斗数',
-    description: '本地排盘，并用你自己的 OpenAI 兼容接口阅读命盘与合盘。',
+    description: '星垣：本地排盘，导出完整命盘文件交给紫微斗数。xAI 解读可选，没有 API 密钥也能用。',
     url: SITE_URL,
     siteName: '星垣',
     locale: 'zh_CN',

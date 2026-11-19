@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTheme } from '@/components/ThemeProvider';
+import { DEMO_URL, SOURCE_REPO_URL, UPSTREAM_REPO_URL } from '@/lib/site';
 
 const LINKS = [
   { href: '/chart', label: '排盘' },
@@ -35,8 +36,18 @@ export default function StudioFrame({ children }: { children: React.ReactNode })
       </header>
       <div className="xy-body">{children}</div>
       <footer className="xy-footer">
-        <span>排盘引擎来自紫微研究 / Renhuai123/ziwei-doushu（MIT）。</span>
-        <span>解读由你自己配置的模型生成，只供文化参考。</span>
+        <span>
+          <a href={DEMO_URL}>在线演示</a>
+          {' · '}
+          <a href={SOURCE_REPO_URL}>源码</a>
+        </span>
+        <span>
+          排盘引擎来自
+          {' '}
+          <a href={UPSTREAM_REPO_URL}>紫微研究 / Renhuai123/ziwei-doushu</a>
+          （MIT）。
+        </span>
+        <span>没有 xAI 密钥时，请用「导出盘面文件」。解读只供文化参考。</span>
         <span className="xy-footer-links">
           <Link href="/privacy">隐私</Link>
           <Link href="/terms">条款</Link>

@@ -1,10 +1,10 @@
 <div align="center">
 
-# Zi Wei Dou Shu · Open-Source Charting Engine
+# Xingyuan · Zi Wei Dou Shu
 
-### Algorithms are openly shared traditional wisdom; they shouldn’t be locked behind walls.
+### Local charts, a complete export file, optional xAI reading
 
-[![CI](https://github.com/Renhuai123/ziwei-doushu/actions/workflows/ci.yml/badge.svg)](https://github.com/Renhuai123/ziwei-doushu/actions/workflows/ci.yml)
+[![CI](https://github.com/Dannywang0822/ziwei-doushu/actions/workflows/ci.yml/badge.svg)](https://github.com/Dannywang0822/ziwei-doushu/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](./LICENSE)
 [![Dataset: CC BY 4.0](https://img.shields.io/badge/dataset-CC%20BY%204.0-green.svg)](./DATASET-LICENSE)
 
@@ -12,11 +12,13 @@
 
 </div>
 
-**1. Philosophy:** Zi Wei Dou Shu is a treasure of traditional Chinese astrology, and Ni Haixia laid out its authentic system in *Tian Ji* (《天纪》). We hope technology can bring more people to learn it.
+**Xingyuan (星垣)** is the local charting app in this repository. A birth time becomes a chart in the browser, with no API key. **Export chart file** (导出盘面文件) downloads one Markdown file: a readable chart, then a fenced JSON block with the full engine result. Send that file to the analysis bot 紫微斗数. xAI reading is optional and needs your own `XAI_API_KEY`. If the plan has no quota, use the export.
 
-We open-source the charting algorithm and the knowledge base because we believe **algorithms are openly shared traditional wisdom and shouldn’t be locked behind walls**. The real value lies in the depth of interpretation, a carefully polished user experience, and what we build up by running the service day after day.
+Live demo: [https://dannywang0822.github.io/ziwei-doushu/](https://dannywang0822.github.io/ziwei-doushu/) (GitHub Pages; no API key; charting and **导出盘面文件** run in the browser). Source: [github.com/Dannywang0822/ziwei-doushu](https://github.com/Dannywang0822/ziwei-doushu). After `npm install` and `npm run dev`, natal charts are at `/chart` and synastry at `/heming`.
 
-**2. About the project:** A Zi Wei Dou Shu (紫微斗数, "Purple Star Astrology") charting engine following the teaching system of **Ni Haixia's *Tian Ji* (倪海厦《天纪》)**. It includes the full charting algorithm, the Four Transformations (四化), a pattern knowledge base, public-domain classical texts, and a **518,400-chart sample dataset**, plus a **674,976-chart × 13-topic interpretation dataset (v4.0, 2026-10-15): 8.77 million readings, about 20.4 billion characters of text, 56.6 GB uncompressed** — up from 518,400 charts and 33.1 GB in v3.0.
+The engine, classics, and the datasets below come from the upstream project [Renhuai123/ziwei-doushu](https://github.com/Renhuai123/ziwei-doushu) (code [MIT](./LICENSE), datasets [CC BY 4.0](./DATASET-LICENSE), author 王多鱼AI). Xingyuan’s demo is the GitHub Pages site above, not the upstream commercial site.
+
+**Upstream datasets:** a Zi Wei Dou Shu engine following **Ni Haixia's *Tian Ji***, with Four Transformations, patterns, public-domain texts, a **518,400-chart sample set**, and a **674,976-chart × 13-topic interpretation set (v4.0, 2026-10-15)**.
 
 | Dataset | Charts | Readings | Uncompressed | Years | Characters per chart |
 |---|---|---|---|---|---|
@@ -26,11 +28,9 @@ We open-source the charting algorithm and the knowledge base because we believe 
 
 <sub>v3.0 characters per chart estimated from a 2,160-chart sample; all other figures are full counts. Both versions have 13 topics per chart.</sub>
 
-This repo is an open snapshot of the engine behind [ouranic.cn](https://ouranic.cn/?from=gh-readme-en), synced from production periodically.
-
 > **Note: on readings of family relations**
 >
-> Zi Wei Dou Shu has known limits when it comes to family relations (parents, siblings, children and so on). In *Tian Ji*, Master Ni Haixia said that "Dou Shu has always been somewhat weaker at reading family relations" ([lecture 2, part 1 · 00:25:27](https://www.bilibili.com/video/BV1KJsLekEfA?p=3&t=1527)). Among traditional methods, Tie Ban Shen Shu has its own strengths in checking family relations ([00:03:15](https://www.bilibili.com/video/BV1KJsLekEfA?p=3&t=195)); Master Ni still kept Zi Wei Dou Shu at the core because it can be read together with geography, surroundings and human affairs, forming a complete system that knows the heavens above, the earth below and human affairs in between ([00:25:43](https://www.bilibili.com/video/BV1KJsLekEfA?p=3&t=1543)). Readings about family relations are therefore for reference only; the Parents, Siblings and Children sections on [ouranic.cn](https://ouranic.cn/?from=gh-readme-en) carry the same note.
+> Zi Wei Dou Shu has known limits when it comes to family relations (parents, siblings, children and so on). In *Tian Ji*, Master Ni Haixia said that "Dou Shu has always been somewhat weaker at reading family relations" ([lecture 2, part 1 · 00:25:27](https://www.bilibili.com/video/BV1KJsLekEfA?p=3&t=1527)). Among traditional methods, Tie Ban Shen Shu has its own strengths in checking family relations ([00:03:15](https://www.bilibili.com/video/BV1KJsLekEfA?p=3&t=195)); Master Ni still kept Zi Wei Dou Shu at the core because it can be read together with geography, surroundings and human affairs, forming a complete system that knows the heavens above, the earth below and human affairs in between ([00:25:43](https://www.bilibili.com/video/BV1KJsLekEfA?p=3&t=1543)). Readings about family relations are therefore for reference only.
 
 ## Latest update (2026-11-13)
 
@@ -44,7 +44,7 @@ The frame-by-frame reading of Ni Haixia's *Tian Ji* Zi Wei lectures is finished 
 - **Limits of the source, stated openly**: three things the video itself cannot give. About two in five "here / this" cannot be resolved (42.5% of 2,805 questions, full run); nearly two thirds of chalk characters are unreadable (64% of 228 character positions, pilot sample only); the printed chart overlays added in editing, the clearest source, cover only 29.1% of running time (full run). See [1.6 million frames, read frame by frame](#16-million-frames-read-frame-by-frame-2026-11-13).
 - **What the directory holds**: the plan and two rounds of independent review, design and results of five pilot experiments, all scripts and prompts, a dated work log giving the source of every number, and the public summaries. It contains no video footage, frame images or full transcripts of the lectures. `tsconfig.json` now excludes `research/` from type checking. See [License](#license).
 
-> **2026-11-19 addendum**: added [Traditional Chinese](./README.zh-Hant.md) and [Japanese](./README.ja.md) READMEs. The Japanese one was contributed by @eltociear (#76); the Traditional Chinese one is converted from the Simplified Chinese README with the same rules as the Traditional Chinese mode on ouranic.cn.
+> **2026-11-19 addendum**: added [Traditional Chinese](./README.zh-Hant.md) and [Japanese](./README.ja.md) READMEs. The Japanese one was contributed upstream by @eltociear (#76); the Traditional Chinese one is converted from the Simplified Chinese README.
 
 ### Previous update (2026-10-15)
 
@@ -57,9 +57,9 @@ The frame-by-frame reading of Ni Haixia's *Tian Ji* Zi Wei lectures is finished 
 
 > **2026-11-08 addendum**: new public repo **[nishi-ziwei-video-reading](./research/nishi-video-reading/)**: reading all 1.6 million frames of the 17 *Tian Ji* Zi Wei episodes one by one with several large models. The plan, scripts, test results and mistakes are published as the work goes on; recent progress lives there. (Merged into this repo under research/nishi-video-reading/ on 2026-11-13.)
 
-> **2026-11-02 addendum**: the late Zi hour day change now uses **true solar time**, the same clock as the hour branch (#63). With a birthplace, 23:30 by the clock at 100°E (22:10 true solar time, the Hai hour) stays on the same day instead of becoming "Hai hour of the next day"; without a birthplace there is no correction and results are unchanged, matching ouranic.cn. An invalid leap-month policy now throws instead of silently charting as "same month" (#71). Thanks to Bortlesboat and xunguangzlj-cloud for the PRs and Verchiel666 for reviewing.
+> **2026-11-02 addendum**: the late Zi hour day change now uses **true solar time**, the same clock as the hour branch (#63). With a birthplace, 23:30 by the clock at 100°E (22:10 true solar time, the Hai hour) stays on the same day instead of becoming "Hai hour of the next day"; without a birthplace there is no correction and results are unchanged, matching the upstream engine. An invalid leap-month policy now throws instead of silently charting as "same month" (#71). Thanks to Bortlesboat and xunguangzlj-cloud for the PRs and Verchiel666 for reviewing.
 
-> **2026-10-31 addendum**: the live platform is now **OURANIC** and has moved from metisziwei.com to **[ouranic.cn](https://ouranic.cn/?from=gh-readme-en)**; old links redirect automatically. Code, datasets and licenses in this repo are unchanged.
+> **2026-10-31 addendum (upstream):** the upstream commercial site was renamed and moved off metisziwei.com. That history belongs to the upstream product. It is not the demo for Xingyuan. Code, datasets, and license notes still follow the upstream release.
 
 > **2026-10-27 addendum**: engine sync. `true-solar-time.ts` accepts `utcOffsetMinutes` (the birthplace's standard UTC offset) for births outside China; results inside China are unchanged. New `clock-adjust.ts` converts a clock reading taken under daylight saving time (or an older time zone) to standard time; it never crosses midnight and is meant to run only when the user confirms. Correction: the engine detects China DST but has never subtracted it automatically; the table below said otherwise.
 
@@ -81,20 +81,32 @@ Engine code lives in `lib/ziwei/` (entry point: `generateChart()` in `algorithm.
 ## Quick start
 
 ```bash
-git clone https://github.com/Renhuai123/ziwei-doushu.git
+git clone https://github.com/Dannywang0822/ziwei-doushu.git
 cd ziwei-doushu
 npm ci
-npm run dev          # charting demo at http://localhost:3000/chart
+cp .env.example .env.local   # leave XAI_API_KEY empty if you only chart and export
+npm run dev                  # http://localhost:3000/chart and /heming
 
 npm run typecheck    # TypeScript check
 npm test             # charting regression tests
 ```
 
-**No API key is needed for charting.** This fork adds `POST /api/interpret` and `POST /api/heming`. They call an OpenAI-compatible Chat Completions endpoint, defaulting to xAI (`https://api.x.ai/v1`, model `grok-4.7`). Set `XAI_API_KEY` (or `AI_API_KEY`) in `.env.local`. Without a key, charts still render and the AI actions say the API is not configured. See the Chinese README for setup. The upstream commercial reading database is not included.
+**Charting does not need an API key.** Charts, decade luck, and annual luck are computed in the browser.
+
+**xAI is optional.** `POST /api/interpret` and `POST /api/heming` call an OpenAI-compatible Chat Completions endpoint, defaulting to xAI (`https://api.x.ai/v1`, model `grok-4.7`). Set `XAI_API_KEY` (or `AI_API_KEY`) in `.env.local`. With no key, or no quota, the chart still renders and the AI buttons say the API is not configured.
+
+**Recommended when there is no API quota:**
+
+1. Start the app as above.
+2. Open `/chart` for a natal chart, or `/heming` for two people. On the synastry page you do not have to wait for the model.
+3. Click **导出盘面文件** (Export chart file). The download is one Markdown file, named like `星垣-命盘-姓名或出生日期-时辰.md` (synastry: `星垣-合盘-….md`).
+4. Send the whole file to the analysis bot 紫微斗数. The top is a readable chart (birth data, twelve palaces, major and minor stars, brightness, natal / decade / annual transformations, self-transformations, major limits, annual luck, and engine patterns; synastry includes both charts plus the comparison). The bottom is a fenced JSON block with the full engine payload, so copy-paste from the UI does not drop fields.
+
+The export stays on your machine. It does not call xAI, and it does not write API keys, environment variables, or prompts into the file. The upstream commercial reading database is not included.
 
 ## What is not included
 
-The interpretation database (`lib/ziwei/db-analysis.ts` is a placeholder), AI prompts, all `/api/*` backend routes, user accounts, payments, deployment configuration, and — for the 1.6-million-frame reading — the full Cornell notes (kept in a private repository) and any video frames.
+The upstream interpretation database (`lib/ziwei/db-analysis.ts` is a placeholder), user accounts, payments, and — for the 1.6-million-frame reading — the full Cornell notes (kept in a private repository) and any video frames. This fork does include optional `/api/interpret` and `/api/heming` routes plus the local chart export. It does not include the upstream commercial reading text.
 
 ## Interpretation dataset v4.0 (674,976 charts × 13 topics, 2026-10-15)
 
@@ -159,4 +171,4 @@ Details (in Chinese) are in the directory's [README](./research/nishi-video-read
 
 **In short**: use the code and data freely, commercially too, as long as you credit the source; Master Ni's quotes are for non-commercial study only (quotations inside the dataset readings and the research directory are likewise not covered by those licenses).
 
-Contributions are welcome. Please read [CONTRIBUTING.md](./CONTRIBUTING.md); questions go to [Discussions](https://github.com/Renhuai123/ziwei-doushu/discussions).
+Contributions are welcome. Please read [CONTRIBUTING.md](./CONTRIBUTING.md); questions go to [Discussions](https://github.com/Dannywang0822/ziwei-doushu/discussions). Dataset files stay on the upstream releases: [Renhuai123/ziwei-doushu](https://github.com/Renhuai123/ziwei-doushu).

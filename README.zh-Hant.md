@@ -1,10 +1,10 @@
 <div align="center">
 
-# 紫微斗數 · 開源排盤引擎
+# 星垣 · 紫微斗數
 
-### 算法是公開的傳統智慧，不應該被鎖在圍牆裡
+### 本機排盤，導出完整命盤文件，可選 xAI 解讀
 
-[![CI](https://github.com/Renhuai123/ziwei-doushu/actions/workflows/ci.yml/badge.svg)](https://github.com/Renhuai123/ziwei-doushu/actions/workflows/ci.yml)
+[![CI](https://github.com/Dannywang0822/ziwei-doushu/actions/workflows/ci.yml/badge.svg)](https://github.com/Dannywang0822/ziwei-doushu/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](./LICENSE)
 [![Dataset: CC BY 4.0](https://img.shields.io/badge/dataset-CC%20BY%204.0-green.svg)](./DATASET-LICENSE)
 
@@ -12,13 +12,15 @@
 
 </div>
 
-> 本頁由[簡體中文版](./README.md)按 ouranic.cn 繁體模式同一套規則轉換而成；內容如有出入，以簡體中文版為準。
+> 本頁由[簡體中文版](./README.md)轉成繁體；內容如有出入，以簡體中文版為準。
 
-**一、項目理念**：紫微斗數是中國傳統命理學的瑰寶，倪海廈老師在《天紀》中系統梳理了正宗的紫微斗數體系。我們希望通過技術手段讓更多人接觸和學習這門學問。
+**星垣**是這個倉庫裡的本機排盤產品。出生時間在瀏覽器裡起盤，不需要 API 密鑰。排好後點「導出盤面文件」，得到一份 Markdown：前面是可讀的完整盤面，文末是引擎算出的完整 JSON。把這個文件交給分析機器人「紫微斗數」即可。xAI 解讀是可選的，要自己的 `XAI_API_KEY`；沒有額度時，導出就是推薦用法。
 
-開源排盤算法和知識庫，是因為我們相信：**算法是公開的傳統智慧，不應該被鎖在圍牆裡**。真正的價值在於解讀的深度、用戶體驗的打磨、以及持續運營的積累。
+在線演示：[https://dannywang0822.github.io/ziwei-doushu/](https://dannywang0822.github.io/ziwei-doushu/)（GitHub Pages，不需要 API 密鑰；排盤和「導出盤面文件」都在瀏覽器裡完成）。源碼：[github.com/Dannywang0822/ziwei-doushu](https://github.com/Dannywang0822/ziwei-doushu)。本機打開：`npm install` 之後 `npm run dev`，排盤在 `/chart`，合盤在 `/heming`。
 
-**二、項目信息**：基於<strong>倪海廈《天紀》</strong>教學體系的紫微斗數排盤系統，包含完整排盤算法、四化系統、格局知識庫、古籍原文數據，以及一套完整開源的紫微斗數解讀數據：**v4.0 解讀數據集——67.5 萬張命盤 × 13 維 = 877 萬段解讀，正文約 204 億字，解壓後 56.6 GB**（2026-10-15 發佈）。
+排盤引擎、古籍和下面兩套開源數據集繼承自上游 [Renhuai123/ziwei-doushu](https://github.com/Renhuai123/ziwei-doushu)（代碼 [MIT](./LICENSE)，數據集 [CC BY 4.0](./DATASET-LICENSE)，作者王多魚AI）。星垣的演示站是上面的 GitHub Pages，不是上游商業站。
+
+**上游數據集**：基於<strong>倪海廈《天紀》</strong>教學體系，含完整排盤算法、四化、格局、古籍原文，以及 **v4.0 解讀數據集——67.5 萬張命盤 × 13 維 = 877 萬段解讀，正文約 204 億字，解壓後 56.6 GB**（2026-10-15 由上游發佈）。
 
 | 數據集 | 命盤 | 解讀段數 | 解壓後 | 覆蓋年份 | 每張盤解讀字數 |
 |---|---|---|---|---|---|
@@ -28,11 +30,9 @@
 
 <sub>v3.0 每張盤解讀字數按 2,160 張盤抽樣估算，其餘數字為全量統計；兩版每張盤都是 13 維。</sub>
 
-在線體驗：[ouranic.cn](https://ouranic.cn/?from=gh-readme-hant)，排盤、AI 解讀、命盤歷史全部開放。
-
 > **注：關於六親判斷**
 >
-> 紫微斗數在六親（父母、兄弟、子女等）判斷上存在一定侷限。倪師在《天紀》中指出：“斗數批六親本來就比較差一點。”（[2上 · 00:25:27](https://www.bilibili.com/video/BV1KJsLekEfA?p=3&t=1527)）在傳統術數中，鐵板神數在核對六親方面有其獨特優勢（[2上 · 00:03:15](https://www.bilibili.com/video/BV1KJsLekEfA?p=3&t=195)）；倪師仍以紫微斗數為核心，是因為它能結合地理、環境與人事進行綜合判斷，形成“上知天文、下知地理、中知人事”的完整體系（[2上 · 00:25:43](https://www.bilibili.com/video/BV1KJsLekEfA?p=3&t=1543)）。因此，與六親相關的分析僅供參考；[ouranic.cn](https://ouranic.cn/?from=gh-readme-hant) 上父母、兄弟、子女三個維度也附有同樣的說明。
+> 紫微斗數在六親（父母、兄弟、子女等）判斷上存在一定侷限。倪師在《天紀》中指出：“斗數批六親本來就比較差一點。”（[2上 · 00:25:27](https://www.bilibili.com/video/BV1KJsLekEfA?p=3&t=1527)）在傳統術數中，鐵板神數在核對六親方面有其獨特優勢（[2上 · 00:03:15](https://www.bilibili.com/video/BV1KJsLekEfA?p=3&t=195)）；倪師仍以紫微斗數為核心，是因為它能結合地理、環境與人事進行綜合判斷，形成“上知天文、下知地理、中知人事”的完整體系（[2上 · 00:25:43](https://www.bilibili.com/video/BV1KJsLekEfA?p=3&t=1543)）。因此，與六親相關的分析僅供參考。
 
 ---
 
@@ -71,7 +71,7 @@
 
 **5. 目錄與邊界** —— [`research/nishi-video-reading/`](./research/nishi-video-reading/README.md) 裡是方案與兩輪獨立終審、小考五個實驗的設計與成績、全部腳本和提示詞、按時間的工作記錄（每個數字的出處）和公開摘要；不含視頻畫面、幀圖片和講課原話的整段轉寫。`tsconfig.json` 已把 `research/` 排除在類型檢查之外。許可見[第九章](#九協議)。
 
-> **2026-11-19 補充**：新增 [繁體中文](./README.zh-Hant.md) 與 [日本語](./README.ja.md) 說明頁。日文版由 @eltociear 貢獻（#76）；繁體版由本頁按 ouranic.cn 繁體模式同一套規則轉換。
+> **2026-11-19 補充**：新增 [繁體中文](./README.zh-Hant.md) 與 [日本語](./README.ja.md) 說明頁。日文版由 @eltociear 貢獻（#76）；繁體版由簡體中文 README 轉換。
 
 ### 上一輪更新（2026-10-15）
 
@@ -95,9 +95,9 @@
 
 > **2026-11-08 補充**：新開公開倉 **[nishi-ziwei-video-reading](./research/nishi-video-reading/)**——用多家大模型把倪師《天紀》紫微 17 集共 160 萬幀逐幀精讀一遍，方案、腳本、考試成績和踩過的坑全過程公開，邊做邊更新，近期動態看那裡。（11-13 已併入本倉 research/nishi-video-reading/）
 
-> **2026-11-02 補充**：晚子時換日改按**真太陽時**判斷，與時辰支同一口徑（#63）——填了出生地時，東經 100° 鐘錶 23:30（真太陽時 22:10，亥時）留在本日，不再排成「次日亥時」；不填出生地不做校正，結果不變，線上 ouranic.cn 也是這個口徑。閏月歸屬參數寫錯時當場報錯，不再靜默按「歸本月」排盤（#71）。感謝 Bortlesboat、xunguangzlj-cloud 提交，Verchiel666 複核。
+> **2026-11-02 補充**：晚子時換日改按**真太陽時**判斷，與時辰支同一口徑（#63）——填了出生地時，東經 100° 鐘錶 23:30（真太陽時 22:10，亥時）留在本日，不再排成「次日亥時」；不填出生地不做校正，結果不變，與上游排盤口徑一致。閏月歸屬參數寫錯時當場報錯，不再靜默按「歸本月」排盤（#71）。感謝 Bortlesboat、xunguangzlj-cloud 提交，Verchiel666 複核。
 
-> **2026-10-31 補充**：線上平臺更名 **OURANIC**，網址由 metisziwei.com 遷到 **[ouranic.cn](https://ouranic.cn/?from=gh-readme-hant)**（運營主體北京王多魚科技有限責任公司，京ICP備2026069066號-1）；舊網址會自動跳轉，本倉庫的代碼、數據集與許可都不變。
+> **2026-10-31 補充（上游）**：上游商業站曾從 metisziwei.com 改名。那是上游站點的歷史，不是星垣的演示地址。本倉庫的代碼、數據集與許可說明仍以上游發佈為準。
 
 > **2026-10-27 補充**：排盤引擎同步——`true-solar-time.ts` 支持海外出生地：傳 `utcOffsetMinutes`（出生地時區的固定標準偏移），按當地時區中央經線做經度修正，國內不傳時結果逐位不變；新增 `clock-adjust.ts`，把夏令時、或當年時區與現在不同時的**鐘錶讀數換成標準時間**（跨日不改，交給用戶），建議做成用戶親手點、可撤銷的按鈕，不要自動改。順帶更正：中國夏令時引擎**只判定、從不自動扣除**，此前「引擎能力」表寫成「自動扣除」，有誤。
 
@@ -140,7 +140,7 @@
 
 ## 二·新、13 維解讀數據集 v4.0（2026-10-15）
 
-> **下載位置：本倉庫右側 [Releases → v4.0-13d](https://github.com/Renhuai123/ziwei-doushu/releases/tag/v4.0-13d)**
+> **下載位置：上游倉庫 [Renhuai123/ziwei-doushu Releases → v4.0-13d](https://github.com/Renhuai123/ziwei-doushu/releases/tag/v4.0-13d)**（數據集在上游發佈，不在本 fork 的 Releases）
 
 v4.0 用 2026-10-15 版網站斷語庫重新生成：13 個分析維度的斷語已按倪海廈《天紀》逐字稿與《紫微斗數全書》原文逐句校正——查不到出處的引文刪去或換成逐字可查的原話（倪師原話註明《天紀》集數與時間碼），不會發生的四化相關句子刪去，有條件的斷語寫明條件。
 
@@ -199,7 +199,7 @@ shasum -a 256 -c SHA256SUMS.txt --ignore-missing # 校验
 
 ## 二、51.8 萬命盤樣本數據集
 
-> **下載位置：本倉庫右側 [Releases](https://github.com/Renhuai123/ziwei-doushu/releases/tag/v3.0-samples) 頁面**
+> **下載位置：上游倉庫 [Renhuai123/ziwei-doushu Releases → v3.0-samples](https://github.com/Renhuai123/ziwei-doushu/releases/tag/v3.0-samples)**（數據集在上游發佈，不在本 fork 的 Releases）
 
 我們開源了一套完整的紫微斗數命盤樣本數據集，覆蓋 **51.8 萬種排盤組合**（年 60 × 月 12 × 日 30 × 時 12 × 性別 2），每條樣本包含完整的命盤結構和基於倪海廈體系的解讀文本。
 
@@ -289,7 +289,7 @@ Expand-Archive combined.zip
 - **學術論文**：參考文獻或致謝章節
 - **二次發佈的數據集**：README 或 metadata 文件裡註明上游來源
 
-僅此一條，其餘都自由。完整條款見 [DATASET-LICENSE](./DATASET-LICENSE)。希望這套數據能幫你做出好東西 —— 做出來記得來小紅書 / 抖音 / 閒魚 **@王多魚AI** 打個招呼 👋
+僅此一條，其餘都自由。完整條款見 [DATASET-LICENSE](./DATASET-LICENSE)。上面的「來源 / 作者」是數據集許可證要求的署名，請保留。
 
 ---
 
@@ -297,7 +297,7 @@ Expand-Archive combined.zip
 
 ```bash
 # 克隆
-git clone https://github.com/Renhuai123/ziwei-doushu.git
+git clone https://github.com/Dannywang0822/ziwei-doushu.git
 cd ziwei-doushu
 
 # 安装依赖
@@ -319,7 +319,11 @@ npm test            # 排盘引擎回归（768 盘 × 紫微铁律、夏令时�
 
 每次 push 與 PR 都會在 GitHub Actions 上跑同一套（見 [`.github/workflows/ci.yml`](./.github/workflows/ci.yml)）。
 
-> **排盤不需要密鑰。**這個 fork 已加上 `POST /api/interpret` 與 `POST /api/heming`，預設呼叫 xAI（`https://api.x.ai/v1`，模型 `grok-4.7`）。設定 `XAI_API_KEY`（或 `AI_API_KEY`）後才會串流解讀；沒有密鑰時命盤仍可看，按鈕會說明介面未設定。步驟見簡體中文 README。
+> **排盤不需要密鑰。**命盤、大限和流年都在瀏覽器裡算出。
+
+xAI 解讀是可選的。`/api/interpret` 與 `/api/heming` 預設請求 xAI，需要 `XAI_API_KEY`。沒有額度或沒有密鑰時，解讀會說明介面未設定，命盤不受影響。
+
+沒有 API 額度時：啟動後打開 `/chart` 或 `/heming`，點 **導出盤面文件**。下載的 Markdown 前半是可讀盤面，文末 json 區塊是引擎的完整結果。把整個文件交給分析機器人「紫微斗數」。導出不呼叫模型，也不寫入密鑰。詳細步驟見簡體中文 README。
 
 ---
 
@@ -496,7 +500,7 @@ npm test            # 排盘引擎回归（768 盘 × 紫微铁律、夏令时�
 
 ### 項目理念
 
-見本頁開頭。想自己搭？代碼都在這裡，拿去用。嫌麻煩？來 [ouranic.cn](https://ouranic.cn/?from=gh-readme-hant) 直接用。
+見本頁開頭。星垣在本機運行：克隆 [Dannywang0822/ziwei-doushu](https://github.com/Dannywang0822/ziwei-doushu)，`npm install` 後 `npm run dev`。
 
 ### 技術棧
 
@@ -508,6 +512,7 @@ npm test            # 排盘引擎回归（768 盘 × 紫微铁律、夏令时�
 
 ### 聯繫
 
-- 線上平臺：[ouranic.cn](https://ouranic.cn/?from=gh-readme-hant)（已完成 ICP 備案：京ICP備2026069066號-1）
-- 提問題、提修復：見 [CONTRIBUTING.md](./CONTRIBUTING.md)；使用交流請到 [討論區](https://github.com/Renhuai123/ziwei-doushu/discussions)
-- 💕 發財的小手點一下：小紅書 / 抖音 / 閒魚 / X 關注 **王多魚AI**，第一時間看上線 + 解鎖更多紫微乾貨～
+- 在線演示：[https://dannywang0822.github.io/ziwei-doushu/](https://dannywang0822.github.io/ziwei-doushu/)
+- 本倉庫：[Dannywang0822/ziwei-doushu](https://github.com/Dannywang0822/ziwei-doushu)
+- 提問題、提修復：見 [CONTRIBUTING.md](./CONTRIBUTING.md)；使用交流請到 [討論區](https://github.com/Dannywang0822/ziwei-doushu/discussions)
+- 上游引擎與數據集：[Renhuai123/ziwei-doushu](https://github.com/Renhuai123/ziwei-doushu)（MIT / CC BY 4.0，作者王多魚AI）

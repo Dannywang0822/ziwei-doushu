@@ -1,12 +1,13 @@
-name: 正式站问题 / ouranic.cn issue
-description: 线上网站（ouranic.cn）登录、支付、显示等问题
+name: 星垣界面 / Xingyuan UI
+description: 本地星垣页面的显示、导出或导航问题（/chart、/heming）
 labels: ["bug"]
 body:
   - type: input
     id: url
     attributes:
       label: 出问题的页面地址
-      placeholder: https://ouranic.cn/……
+      description: 写本机或你自己部署的地址。星垣没有上游商业站的登录和支付。
+      placeholder: http://localhost:3000/chart
     validations:
       required: true
   - type: textarea
@@ -20,9 +21,9 @@ body:
     id: env
     attributes:
       label: 浏览器与系统
-      placeholder: 例：Windows 11 / Chrome 153 / 公司网络开了代理
+      placeholder: 例：Windows 11 / Chrome 153
   - type: textarea
     id: screenshot
     attributes:
       label: 截图
-      description: 请勿贴出手机号、验证码、他人的生辰等隐私信息。
+      description: 请勿贴出手机号、验证码、API 密钥、他人的生辰等隐私信息。
