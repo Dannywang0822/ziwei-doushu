@@ -8,25 +8,25 @@
   --font: -apple-system, 'PingFang SC', 'Helvetica Neue', 'Segoe UI', sans-serif;
   --font-mono: 'SF Mono', 'Menlo', 'Noto Sans Mono', 'Consolas', monospace;
 
-  /* 背景层级 */
-  --bg-0: #FAFAF9;
-  --bg-1: #F4F3EF;
-  --bg-2: #ECEAE4;
-  --bg-inv: #0D0D0B;
+  /* 背景层级：暖纸 */
+  --bg-0: #f4efe6;
+  --bg-1: #ebe4d6;
+  --bg-2: #e0d5c3;
+  --bg-inv: #1a1614;
 
   /* 文字层级 */
-  --tx-0: #0D0D0B;
-  --tx-1: #1A1A18;
-  --tx-2: #4A4A45;
-  --tx-3: #8A8A82;
-  --tx-inv: #F0EDE8;
-  --tx-inv2: rgba(240,237,232,0.65);
+  --tx-0: #1c1612;
+  --tx-1: #2a221c;
+  --tx-2: #5e534a;
+  --tx-3: #8a7d72;
+  --tx-inv: #f6f1e8;
+  --tx-inv2: rgba(246,241,232,0.72);
 
-  /* 唯一强调色：墨金 */
-  --ac:     #B8922A;
-  --ac-dim: #7A5F1A;
-  --ac-bg:  rgba(184,146,42,0.07);
-  --ac-bdr: rgba(184,146,42,0.22);
+  /* 强调色：朱砂 */
+  --ac:     #9d3b2f;
+  --ac-dim: #7a2d24;
+  --ac-bg:  rgba(157,59,47,0.08);
+  --ac-bdr: rgba(157,59,47,0.28);
 
   /* 四化语义色（仅用于命盘数据，不用于UI装饰） */
   --lu:   #2D7A4A;
@@ -46,8 +46,20 @@
   --sh-lg: 0 12px 40px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.06);
 
   /* 卡片/内容块背景 */
-  --bg-card: #FFFFFF;
-  --bg-page: #fbf6e8;
+  --bg-card: #fffaf3;
+  --bg-page: #f4efe6;
+
+  /* 命盘组件沿用的变量名。色相改成朱砂，避免再走金底深蓝。 */
+  --t-bg: #f4efe6;
+  --t-surface: #fffaf3;
+  --t-card: #fffaf3;
+  --t-text: #1c1612;
+  --t-text1: #1c1612;
+  --t-text2: #5e534a;
+  --t-faint: #8a7d72;
+  --t-gold: #9d3b2f;
+  --t-border: rgba(28, 22, 18, 0.12);
+  --t-border-acc: rgba(157, 59, 47, 0.35);
 
   /* 圆角 */
   --r-xs:  4px;
@@ -60,22 +72,22 @@
 
 /* ─── 暗色模式 Token 覆盖 ──────────────────────────────── */
 [data-theme="dark"] {
-  --bg-0: #020810;
-  --bg-1: #0a1020;
-  --bg-2: #141e30;
-  --bg-inv: #f0ede8;
+  --bg-0: #141210;
+  --bg-1: #1c1916;
+  --bg-2: #28231f;
+  --bg-inv: #f4efe6;
 
-  --tx-0: #e8eef6;
-  --tx-1: #dce4f0;
-  --tx-2: #9db0d0;
-  --tx-3: #6a7a96;
-  --tx-inv: #0d0d0b;
-  --tx-inv2: rgba(13,13,11,0.65);
+  --tx-0: #f6f1e8;
+  --tx-1: #e7ddd2;
+  --tx-2: #c4b6a6;
+  --tx-3: #8d7f72;
+  --tx-inv: #1c1612;
+  --tx-inv2: rgba(28,22,18,0.65);
 
-  --ac:     #d4a843;
-  --ac-dim: #e8c060;
-  --ac-bg:  rgba(212,168,67,0.10);
-  --ac-bdr: rgba(212,168,67,0.25);
+  --ac:     #e07a68;
+  --ac-dim: #f0b2a6;
+  --ac-bg:  rgba(224,122,104,0.12);
+  --ac-bdr: rgba(224,122,104,0.35);
 
   --bdr:      rgba(255,255,255,0.07);
   --bdr-med:  rgba(255,255,255,0.12);
@@ -86,8 +98,19 @@
   --sh-md: 0 4px 20px rgba(0,0,0,0.5), 0 2px 6px rgba(0,0,0,0.35);
   --sh-lg: 0 12px 40px rgba(0,0,0,0.6), 0 4px 12px rgba(0,0,0,0.4);
 
-  --bg-card: rgba(255,255,255,0.04);
-  --bg-page: #020810;
+  --bg-card: #221e1b;
+  --bg-page: #141210;
+
+  --t-bg: #141210;
+  --t-surface: #1c1916;
+  --t-card: #221e1b;
+  --t-text: #f6f1e8;
+  --t-text1: #f6f1e8;
+  --t-text2: #c4b6a6;
+  --t-faint: #8d7f72;
+  --t-gold: #e07a68;
+  --t-border: rgba(246, 241, 232, 0.12);
+  --t-border-acc: rgba(224, 122, 104, 0.45);
 }
 
 /* ─── 全局基础 ───────────────────────────────────────────── */
@@ -434,3 +457,192 @@ body {
    select 本身是半透明底 + 浅色字，Windows 上原生下拉列表是白底，浅灰字配白底看不清（#14） */
 [data-theme="dark"] select { color-scheme: dark; }
 [data-theme="dark"] select option { background-color: var(--bg-2); color: var(--tx-1); }
+
+/* 命盘卡片。组件类名保留，颜色跟星垣走。 */
+.card-glass {
+  background: color-mix(in srgb, var(--t-card) 94%, transparent);
+  border: 1px solid var(--t-border);
+  box-shadow: 0 12px 32px rgba(28, 22, 18, 0.06);
+}
+.card-inner {
+  background: color-mix(in srgb, var(--t-bg) 72%, var(--t-card));
+  border: 1px solid var(--t-border);
+  border-radius: 10px;
+}
+[data-theme="dark"] .card-glass {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+}
+
+/* 星垣界面 */
+.xy-app {
+  min-height: 100vh;
+  background:
+    radial-gradient(900px 420px at 0% -10%, rgba(157, 59, 47, 0.09), transparent 55%),
+    linear-gradient(180deg, transparent, rgba(28, 22, 18, 0.03) 100%),
+    var(--bg-0);
+  color: var(--tx-1);
+}
+.xy-bar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  height: 60px;
+  padding: 0 28px;
+  background: color-mix(in srgb, var(--bg-0) 88%, transparent);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--bdr);
+}
+.xy-brand {
+  font-family: "Songti SC", "STSong", "Noto Serif SC", serif;
+  font-size: 20px;
+  letter-spacing: 0.28em;
+  color: var(--tx-0);
+  text-decoration: none;
+}
+.xy-nav {
+  display: flex;
+  gap: 6px;
+  flex: 1;
+}
+.xy-nav a {
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: var(--tx-2);
+  text-decoration: none;
+  font-size: 13px;
+}
+.xy-nav a[data-active="true"] {
+  color: var(--ac);
+  background: var(--ac-bg);
+}
+.xy-theme {
+  border: 1px solid var(--bdr-med);
+  background: transparent;
+  color: var(--tx-2);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.xy-body { padding: 8px 0 24px; }
+.xy-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  padding: 28px;
+  color: var(--tx-3);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.xy-footer-links { display: flex; gap: 12px; }
+.xy-footer-links a { color: var(--tx-2); }
+.xy-narrow, .xy-wide { margin: 0 auto; padding: 28px 20px 12px; }
+.xy-narrow { max-width: 880px; }
+.xy-wide { max-width: 1180px; }
+.xy-hero { padding: 28px 0 12px; }
+.xy-kicker {
+  margin: 0 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  color: var(--ac);
+}
+.xy-title {
+  margin: 0;
+  font-family: "Songti SC", "STSong", "Noto Serif SC", serif;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--tx-0);
+}
+.xy-lead {
+  max-width: 38em;
+  margin: 14px 0 0;
+  color: var(--tx-2);
+  font-size: 15px;
+  line-height: 1.75;
+}
+.xy-actions, .xy-steps { display: flex; gap: 12px; flex-wrap: wrap; }
+.xy-actions { margin-top: 22px; }
+.xy-steps { margin-top: 28px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.xy-card {
+  background: var(--bg-card);
+  border: 1px solid var(--bdr);
+  border-radius: 18px;
+  padding: 20px;
+}
+.xy-card h2 { margin: 8px 0; font-size: 18px; color: var(--tx-0); font-weight: 600; }
+.xy-card p, .xy-card li { color: var(--tx-2); font-size: 14px; line-height: 1.7; }
+.xy-note { margin-top: 16px; }
+.xy-note ul { margin: 0; padding-left: 18px; }
+.xy-source { margin-top: 14px; }
+.xy-source a { color: var(--ac); }
+.xy-seal {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid var(--ac);
+  color: var(--ac);
+  font-family: "Songti SC", "STSong", "Noto Serif SC", serif;
+  letter-spacing: 0;
+  margin-bottom: 14px;
+}
+.xy-primary, .xy-secondary, .xy-mini, .xy-textbtn {
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+.xy-primary, .xy-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 18px;
+  border-radius: 999px;
+}
+.xy-primary {
+  background: var(--ac);
+  color: #fffaf3;
+  border: 1px solid var(--ac);
+}
+.xy-secondary, .xy-mini {
+  background: transparent;
+  color: var(--tx-1);
+  border: 1px solid var(--bdr-heavy);
+}
+.xy-mini {
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+}
+.xy-textbtn {
+  background: none;
+  border: none;
+  color: var(--tx-2);
+  padding: 0 0 12px;
+  font-size: 13px;
+}
+.xy-facts, .xy-pair {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 8px;
+}
+.xy-facts div, .xy-person {
+  background: var(--bg-card);
+  border: 1px solid var(--bdr);
+  border-radius: 14px;
+  padding: 10px 12px;
+}
+.xy-facts span, .xy-person span { display: block; color: var(--tx-3); font-size: 11px; }
+.xy-facts strong, .xy-person strong { display: block; margin-top: 4px; color: var(--tx-0); font-size: 14px; font-weight: 600; }
+.xy-pair { grid-template-columns: 1fr 1fr; margin-bottom: 16px; }
+@media (max-width: 800px) {
+  .xy-bar { padding: 0 14px; gap: 10px; }
+  .xy-title { font-size: 36px; }
+  .xy-steps, .xy-facts { grid-template-columns: 1fr; }
+  .xy-nav { overflow-x: auto; }
+}

@@ -33,6 +33,8 @@ const stubRequire = (name: string) => {
   if (name === '@/components/InsightPanel') return { default: InsightPanel };
   if (name === '@/components/TimeNav') return { default: TimeNav };
   if (name === '@/components/BirthForm') return { default: () => null };
+  if (name === '@/components/studio/StudioFrame') return { default: ({ children }: { children: React.ReactNode }) => children };
+  if (name === '@/components/studio/ChartFacts') return { default: () => null };
   if (name === '@/lib/ziwei/algorithm') return { generateChart };
   return require(name);
 };

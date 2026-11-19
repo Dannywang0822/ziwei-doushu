@@ -90,7 +90,7 @@ npm run typecheck    # TypeScript check
 npm test             # charting regression tests
 ```
 
-**命盤の作成に API キーは不要です。** オープンソース版には**バックエンドのルートが含まれていません**。AI による解釈（`/api/interpret`）と相性分析（`/api/heming`）は、ご自身で実装するまで 404 を返します。
+**命盤の作成に API キーは不要です。** この fork には `POST /api/interpret` と `POST /api/heming` があります。既定は xAI の OpenAI 互換 Chat Completions（`https://api.x.ai/v1`、モデル `grok-4.7`）です。`XAI_API_KEY`（または `AI_API_KEY`）が無いときは命盤はそのまま表示され、AI 操作は未設定と説明します。手順は中国語 README を参照してください。
 
 ## 含まれていないもの
 
