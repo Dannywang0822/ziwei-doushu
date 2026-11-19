@@ -30,14 +30,21 @@ import { SITE_URL } from '@/lib/site';
 // 也允许运行时按需渲染，避免中文 URL 编码问题导致 404
 export const dynamicParams = false;
 
+/** STAR_DB 仍是占位时，静态导出至少要有一条可生成的路径。 */
+const EMPTY_EXPORT_SLUG = '_empty';
+
 export async function generateStaticParams() {
   const routes = getAllKnowledgeRoutes();
-  // URL 用拼音 slug 替代中文，避开 Vercel/CDN 中文路由边界问题
+  if (routes.length === 0) return [{ star: EMPTY_EXPORT_SLUG, topic: 'overview' }];
+  // URL 用拼音 slug 替代中文，避开中文路由边界问题
   return routes.map(r => ({ star: r.slug, topic: r.topic }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ star: string; topic: string }> }) {
   const { star: slug, topic } = await params;
+  if (slug === EMPTY_EXPORT_SLUG) {
+    return { title: '星曜详页尚未收录', robots: { index: false, follow: false } };
+  }
   const star = SLUG_TO_STAR[slug];
   if (!star) return {};
   const data = getKnowledge(star, topic as TopicKey);
@@ -69,6 +76,18 @@ export async function generateMetadata({ params }: { params: Promise<{ star: str
 
 export default async function KnowledgePage({ params }: { params: Promise<{ star: string; topic: string }> }) {
   const { star: slug, topic } = await params;
+  if (slug === EMPTY_EXPORT_SLUG) {
+    return (
+      <div style={{ background: 'var(--bg-page)', minHeight: '100vh', padding: '48px 24px' }}>
+        <p style={{ color: 'var(--tx-2)', lineHeight: 1.8 }}>
+          星曜详页的断语库还是占位，这里没有可展开的正文。排盘和「导出盘面文件」不受影响。
+        </p>
+        <p style={{ marginTop: 16 }}>
+          <Link href="/chart" style={{ color: 'var(--ac)' }}>去排盘</Link>
+        </p>
+      </div>
+    );
+  }
   const star = SLUG_TO_STAR[slug];
   if (!star) notFound();
   const data = getKnowledge(star, topic as TopicKey);

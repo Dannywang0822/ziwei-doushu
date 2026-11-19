@@ -1,10 +1,10 @@
 <div align="center">
 
-# 紫微斗数 · オープンソース命盤作成エンジン
+# 星垣（Xingyuan）· 紫微斗数
 
-### アルゴリズムは公に共有された伝統の知恵であり、壁の中に閉じ込めるべきではありません。
+### ローカルで命盤を作り、完全なファイルを書き出し、xAI の解読は任意
 
-[![CI](https://github.com/Renhuai123/ziwei-doushu/actions/workflows/ci.yml/badge.svg)](https://github.com/Renhuai123/ziwei-doushu/actions/workflows/ci.yml)
+[![CI](https://github.com/Dannywang0822/ziwei-doushu/actions/workflows/ci.yml/badge.svg)](https://github.com/Dannywang0822/ziwei-doushu/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](./LICENSE)
 [![Dataset: CC BY 4.0](https://img.shields.io/badge/dataset-CC%20BY%204.0-green.svg)](./DATASET-LICENSE)
 
@@ -14,11 +14,13 @@
 
 > この日本語版は翻訳です。内容が追いついていない場合は、[中文](./README.md) と [English](./README.en.md) の README を正としてください。
 
-**1. 理念：** 紫微斗数は中国の伝統的な命理学の至宝であり、倪海厦（Ni Haixia）氏は『天紀』（《天纪》）でその正統な体系を整理しました。私たちは、技術の力でより多くの人がこの学問に触れ、学べるようになることを願っています。
+**星垣（Xingyuan）** は、このリポジトリのローカル命盤アプリです。出生時刻からブラウザで命盤を作り、API キーは要りません。「导出盘面文件」で Markdown を 1 枚ダウンロードします。前半は読める命盤、末尾はエンジン結果の完全な JSON です。そのファイルを分析ボット「紫微斗数」に渡してください。xAI の解読は任意で、自分の `XAI_API_KEY` が必要です。枠がないときは書き出しを使います。
 
-命盤作成のアルゴリズムと知識ベースをオープンソースにしているのは、**アルゴリズムは公に共有された伝統の知恵であり、壁の中に閉じ込めるべきではない**と考えているからです。本当の価値は、解釈の深さ、丁寧に磨き上げたユーザー体験、そして日々サービスを運営する中で積み上げていくものにあります。
+公開デモ：[https://dannywang0822.github.io/ziwei-doushu/](https://dannywang0822.github.io/ziwei-doushu/)（GitHub Pages。API キー不要。命盤と「导出盘面文件」はブラウザ内）。ソース：[github.com/Dannywang0822/ziwei-doushu](https://github.com/Dannywang0822/ziwei-doushu)。`npm install` のあと `npm run dev`。命盤は `/chart`、合盤は `/heming` です。
 
-**2. プロジェクトについて：** **倪海厦『天紀』（倪海厦《天纪》）** の教学体系に基づく紫微斗数（紫微斗数、"Purple Star Astrology"）の命盤作成エンジンです。完全な命盤作成アルゴリズム、四化（四化）、格局の知識ベース、パブリックドメインの古典原文、**518,400 件の命盤のサンプルデータセット**に加え、**674,976 件の命盤 × 13 テーマの解釈データセット（v4.0、2026-10-15）：877 万件の解釈、本文約 204 億文字、展開後 56.6 GB** を含んでいます。v3.0 の 518,400 件・33.1 GB から増えています。
+エンジンと下のデータセットは上流 [Renhuai123/ziwei-doushu](https://github.com/Renhuai123/ziwei-doushu) のものです（コード [MIT](./LICENSE)、データセット [CC BY 4.0](./DATASET-LICENSE)、作者 王多鱼AI）。星垣のデモは上の GitHub Pages であり、上流の商用サイトではありません。
+
+**上流データセット：** **倪海厦『天紀』** に基づく命盤エンジン。サンプル **518,400** 件と、解釈データセット **674,976 件 × 13 テーマ（v4.0、2026-10-15）** を含みます。
 
 | データセット | 命盤数 | 解釈数 | 展開後 | 対象年 | 命盤あたりの文字数 |
 |---|---|---|---|---|---|
@@ -28,11 +30,9 @@
 
 <sub>v3.0 の命盤あたりの文字数は 2,160 件の命盤のサンプルから推定した値で、その他の数値はすべて全件集計です。どちらのバージョンも命盤ごとに 13 テーマです。</sub>
 
-このリポジトリは [ouranic.cn](https://ouranic.cn/?from=gh-readme-ja) を支えるエンジンのオープンなスナップショットで、本番環境から定期的に同期されています。
-
 > **注：六親（家族関係）の読み取りについて**
 >
-> 紫微斗数には、六親（父母、兄弟、子女など）の読み取りに関して既知の限界があります。倪海厦先生は『天紀』の中で「斗数はもともと六親を見るのがやや弱い」と述べています（[第 2 講 前半 · 00:25:27](https://www.bilibili.com/video/BV1KJsLekEfA?p=3&t=1527)）。伝統的な手法の中では、鉄板神数が六親の確認に独自の強みを持っています（[00:03:15](https://www.bilibili.com/video/BV1KJsLekEfA?p=3&t=195)）。それでも倪先生が紫微斗数を中核に据えたのは、地理・環境・人事と組み合わせて読むことができ、上は天文を知り、下は地理を知り、その間の人事を知るという完全な体系を形作れるからです（[00:25:43](https://www.bilibili.com/video/BV1KJsLekEfA?p=3&t=1543)）。そのため、六親に関する解釈はあくまで参考情報です。[ouranic.cn](https://ouranic.cn/?from=gh-readme-ja) の父母宮、兄弟宮、子女宮のセクションにも同じ注記があります。
+> 紫微斗数には、六親（父母、兄弟、子女など）の読み取りに関して既知の限界があります。倪海厦先生は『天紀』の中で「斗数はもともと六親を見るのがやや弱い」と述べています（[第 2 講 前半 · 00:25:27](https://www.bilibili.com/video/BV1KJsLekEfA?p=3&t=1527)）。伝統的な手法の中では、鉄板神数が六親の確認に独自の強みを持っています（[00:03:15](https://www.bilibili.com/video/BV1KJsLekEfA?p=3&t=195)）。それでも倪先生が紫微斗数を中核に据えたのは、地理・環境・人事と組み合わせて読むことができ、上は天文を知り、下は地理を知り、その間の人事を知るという完全な体系を形作れるからです（[00:25:43](https://www.bilibili.com/video/BV1KJsLekEfA?p=3&t=1543)）。そのため、六親に関する解釈はあくまで参考情報です。
 
 ## 最新の更新（2026-11-13）
 
@@ -57,9 +57,9 @@
 
 > **2026-11-08 追記**：新しい公開リポジトリ **[nishi-ziwei-video-reading](./research/nishi-video-reading/)**：複数の大規模モデルを使い、『天紀』紫微の 17 回分の 160 万フレームすべてを 1 枚ずつ読んでいきます。計画、スクリプト、テスト結果、失敗は作業の進行に合わせて公開しており、最新の進捗はそちらにあります。（2026-11-13 にこのリポジトリの research/nishi-video-reading/ に統合されました。）
 
-> **2026-11-02 追記**：晩子時の日付の切り替えに、時支と同じ時計である**真太陽時**を使うようになりました（#63）。出生地を指定した場合、東経 100° で時計の 23:30（真太陽時 22:10、亥の刻）は「翌日の亥の刻」にはならず同じ日のままになります。出生地を指定しない場合は補正が行われず、結果は変わらず ouranic.cn と一致します。無効な閏月の方針を指定すると、黙って「同じ月」として命盤を作成するのではなく、例外を投げるようになりました（#71）。PR を送ってくださった Bortlesboat さんと xunguangzlj-cloud さん、レビューしてくださった Verchiel666 さんに感謝します。
+> **2026-11-02 追記**：晩子時の日付の切り替えに、時支と同じ時計である**真太陽時**を使うようになりました（#63）。出生地を指定した場合、東経 100° で時計の 23:30（真太陽時 22:10、亥の刻）は「翌日の亥の刻」にはならず同じ日のままになります。出生地を指定しない場合は補正が行われず、結果は上流エンジンと一致します。無効な閏月の方針を指定すると、黙って「同じ月」として命盤を作成するのではなく、例外を投げるようになりました（#71）。PR を送ってくださった Bortlesboat さんと xunguangzlj-cloud さん、レビューしてくださった Verchiel666 さんに感謝します。
 
-> **2026-10-31 追記**：本番のプラットフォームは **OURANIC** という名前になり、metisziwei.com から **[ouranic.cn](https://ouranic.cn/?from=gh-readme-ja)** に移転しました。古いリンクは自動的にリダイレクトされます。このリポジトリのコード、データセット、ライセンスに変更はありません。
+> **2026-10-31 追記（上流）：** 上流の商用サイトは metisziwei.com から改名されました。それは上流製品の履歴であり、星垣のデモではありません。コード、データセット、ライセンスの説明は上流の公開に従います。
 
 > **2026-10-27 追記**：エンジンを同期しました。`true-solar-time.ts` が `utcOffsetMinutes`（出生地の標準 UTC オフセット）を受け付けるようになり、中国国外での出生に対応しました。中国国内の結果は変わりません。新しい `clock-adjust.ts` は、夏時間（または以前のタイムゾーン）で読んだ時計の時刻を標準時に変換します。日付をまたぐことはなく、ユーザーが確認した場合にのみ実行することを想定しています。訂正：エンジンは中国の夏時間を検出しますが、これまで自動的に差し引いたことはありません。下の表の記載は誤りでした。
 
@@ -81,20 +81,32 @@
 ## クイックスタート
 
 ```bash
-git clone https://github.com/Renhuai123/ziwei-doushu.git
+git clone https://github.com/Dannywang0822/ziwei-doushu.git
 cd ziwei-doushu
 npm ci
-npm run dev          # charting demo at http://localhost:3000/chart
+cp .env.example .env.local   # 命盤と書き出しだけなら XAI_API_KEY は空でよい
+npm run dev                  # http://localhost:3000/chart と /heming
 
 npm run typecheck    # TypeScript check
 npm test             # charting regression tests
 ```
 
-**命盤の作成に API キーは不要です。** この fork には `POST /api/interpret` と `POST /api/heming` があります。既定は xAI の OpenAI 互換 Chat Completions（`https://api.x.ai/v1`、モデル `grok-4.7`）です。`XAI_API_KEY`（または `AI_API_KEY`）が無いときは命盤はそのまま表示され、AI 操作は未設定と説明します。手順は中国語 README を参照してください。
+**命盤の作成に API キーは不要です。** 命盤、大限、流年はブラウザで計算します。
+
+**xAI は任意です。** `POST /api/interpret` と `POST /api/heming` は OpenAI 互換の Chat Completions を呼び、既定は xAI（`https://api.x.ai/v1`、モデル `grok-4.7`）です。`.env.local` に `XAI_API_KEY`（または `AI_API_KEY`）を書きます。キーが無い、または枠が無いときも命盤は表示され、AI 操作は未設定と説明します。
+
+**枠が無いときの手順：**
+
+1. 上のとおり起動する。
+2. 本命は `/chart`、二人の合盤は `/heming`。合盤はモデルの返答を待たなくてよい。
+3. **导出盘面文件** を押す。Markdown が 1 枚落ちる（例：`星垣-命盘-姓名或出生日期-时辰.md`。合盤は `星垣-合盘-….md`）。
+4. ファイル全体を分析ボット「紫微斗数」に渡す。前半は読める命盤（出生、十二宮、主星と雑耀、明るさ、本命・大限・流年の四化、自化、大限と流年、エンジンが知っている格局。合盤は二枚と対照）。末尾の json ブロックがエンジン結果の完全な記録で、画面のコピーで欠ける欄を残さない。
+
+書き出しはローカルだけで、xAI を呼ばず、API キーや環境変数やプロンプトはファイルに入りません。
 
 ## 含まれていないもの
 
-解釈データベース（`lib/ziwei/db-analysis.ts` はプレースホルダーです）、AI のプロンプト、すべての `/api/*` バックエンドのルート、ユーザーアカウント、決済、デプロイの設定、そして 160 万フレームの精読については、ノートの全文（非公開リポジトリに保管）とすべての動画フレーム。
+上流の解釈データベース（`lib/ziwei/db-analysis.ts` はプレースホルダーです）、ユーザーアカウント、決済、そして 160 万フレームの精読については、ノートの全文（非公開リポジトリに保管）とすべての動画フレーム。この fork には任意の `/api/interpret` と `/api/heming`、およびローカルな命盤書き出しがあります。上流の商用断語本文は含みません。
 
 ## 解釈データセット v4.0（674,976 件の命盤 × 13 テーマ、2026-10-15）
 
@@ -159,4 +171,4 @@ npm test             # charting regression tests
 
 **要するに**：コードとデータは、出典を明記すれば商用も含めて自由に使えます。倪先生の言葉は非商用の学習目的に限ります（データセットの解釈や研究ディレクトリに含まれる引用も、同様にそれらのライセンスの対象外です）。
 
-コントリビュートを歓迎します。[CONTRIBUTING.md](./CONTRIBUTING.md) をお読みください。質問は [Discussions](https://github.com/Renhuai123/ziwei-doushu/discussions) へどうぞ。
+コントリビュートを歓迎します。[CONTRIBUTING.md](./CONTRIBUTING.md) をお読みください。質問は [Discussions](https://github.com/Dannywang0822/ziwei-doushu/discussions) へどうぞ。データセットのファイルは上流の Releases にあります：[Renhuai123/ziwei-doushu](https://github.com/Renhuai123/ziwei-doushu)。

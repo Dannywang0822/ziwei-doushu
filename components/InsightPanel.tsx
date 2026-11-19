@@ -5,6 +5,7 @@ import type { ZiweiChart, Palace } from '@/lib/ziwei/types';
 import type { TopicKey } from '@/lib/ziwei/db-analysis';
 import type { TimeView } from './TimeNav';
 import { readDeltaStream, readErrorMessage } from '@/lib/ai/browser-stream';
+import { STATIC_DEMO, STATIC_DEMO_NOTE } from '@/lib/site';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -96,6 +97,10 @@ export default function InsightPanel({ chart, selectedPalace, selectedSiHua }: I
   }, [messages]);
 
   useEffect(() => {
+    if (STATIC_DEMO) {
+      setAiHint(STATIC_DEMO_NOTE);
+      return;
+    }
     let cancelled = false;
     fetch('/api/ai-status')
       .then(res => res.json())
@@ -118,6 +123,12 @@ export default function InsightPanel({ chart, selectedPalace, selectedSiHua }: I
     apiMessages: { role: 'user' | 'assistant'; content: string }[],
     extra?: { topic?: string; focus?: Record<string, string> },
   ) => {
+    if (STATIC_DEMO) {
+      setMessages(prev => [...prev, { role: 'assistant', content: STATIC_DEMO_NOTE }]);
+      setLoading(false);
+      loadingRef.current = false;
+      return;
+    }
     try {
       const res = await fetch('/api/interpret', {
         method: 'POST',

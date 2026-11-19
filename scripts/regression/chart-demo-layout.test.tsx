@@ -36,6 +36,8 @@ const stubRequire = (name: string) => {
   if (name === '@/components/studio/StudioFrame') return { default: ({ children }: { children: React.ReactNode }) => children };
   if (name === '@/components/studio/ChartFacts') return { default: () => null };
   if (name === '@/lib/ziwei/algorithm') return { generateChart };
+  if (name === '@/lib/ziwei/chart-export') return { buildNatalExport: () => ({ filename: 'x.md', markdown: '' }) };
+  if (name === '@/lib/ziwei/export-client') return { downloadTextFile: () => {}, jsonSafe: (value: unknown) => value };
   return require(name);
 };
 new Function('require', 'exports', output)(stubRequire, exports);
@@ -43,6 +45,7 @@ assert.ok(exports.default);
 const html = renderToStaticMarkup(exports.default());
 assert.equal((html.match(/>本命<\/button>/g) ?? []).length, 1,
   'generated chart must expose exactly one natal/time navigation, owned by ChartBoard');
+assert.match(html, /导出盘面文件/);
 const panelClass = html.match(/class="([^"]*card-glass[^"]*)"/g)?.find(x => x.includes('flex-col')) ?? '';
 assert.ok(panelClass.includes('h-[min(44rem,80dvh)]'), 'panel must have a viewport-bounded height');
 assert.ok(panelClass.includes('min-h-0') && panelClass.includes('min-w-0'));

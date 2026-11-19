@@ -9,6 +9,8 @@
 
 import type { MetadataRoute } from 'next';
 import { ALL_BOOKS } from '@/lib/classics';
+
+export const dynamic = 'force-static';
 import { getAllKnowledgeRoutes } from '@/lib/seo/knowledge';
 import { SITE_URL } from '@/lib/site';
 

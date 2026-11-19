@@ -2,6 +2,9 @@
 import { useState, useCallback, useRef } from 'react';
 import BirthForm, { type BirthFormState } from '@/components/BirthForm';
 import StudioFrame from '@/components/studio/StudioFrame';
+import { downloadTextFile } from '@/lib/ziwei/export-client';
+import { buildHemingExport } from '@/lib/ziwei/chart-export';
+import { STATIC_DEMO_NOTE } from '@/lib/site';
 import { formToBirthInfo } from '@/lib/ziwei/share';
 import { generateChart as buildChart } from '@/lib/ziwei/algorithm';
 import type { BirthInfo, ZiweiChart } from '@/lib/ziwei/types';
@@ -71,6 +74,8 @@ export default function HemingPage() {
   const [analysisError, setAnalysisError] = useState(false);
   const [apiMissing, setApiMissing] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
+  const [exporting, setExporting] = useState(false);
+  const [exportError, setExportError] = useState<string | null>(null);
   const analysisRef = useRef<HTMLDivElement>(null);
 
   const generateChart = useCallback(async (info: BirthInfo): Promise<ZiweiChart | null> => {
@@ -110,6 +115,12 @@ export default function HemingPage() {
       }
       setChartA(cA);
       setChartB(cB);
+
+      if (process.env.NEXT_PUBLIC_STATIC_DEMO === 'true') {
+        setAnalysis(STATIC_DEMO_NOTE);
+        setAnalyzing(false);
+        return;
+      }
 
       const res = await fetch('/api/heming', {
         method: 'POST',
@@ -166,6 +177,27 @@ export default function HemingPage() {
     }
   }, [formA, formB, generateChart]);
 
+  const exportChartFile = useCallback(async () => {
+    setExportError(null);
+    if (!isFormReady(formA) || !isFormReady(formB)) {
+      setFormError('请先填写双方完整出生信息');
+      return;
+    }
+    setExporting(true);
+    try {
+      const nextA = buildChart(formToBirthInfo(formA!));
+      const nextB = buildChart(formToBirthInfo(formB!));
+      setChartA(nextA);
+      setChartB(nextB);
+      const file = buildHemingExport(nextA, nextB);
+      downloadTextFile(file.filename, file.markdown);
+    } catch (error) {
+      setExportError(error instanceof Error ? error.message : '导出失败');
+    } finally {
+      setExporting(false);
+    }
+  }, [formA, formB]);
+
   const cardStyle = {
     background: 'var(--bg-card)',
     border: '1px solid var(--bdr)',
@@ -187,7 +219,16 @@ export default function HemingPage() {
           <p className="xy-lead">
             先在浏览器里分别起盘，再把结构对照交给你配置的模型。
             感情、合伙、亲子和朋友都可以追问。没有密钥时，这里会写明接口未配置。
+            也可以不请求模型，直接导出两张盘。
           </p>
+          <div className="xy-actions">
+            <button type="button" className="xy-secondary" onClick={exportChartFile} disabled={exporting}>
+              {exporting ? '正在导出…' : '导出盘面文件'}
+            </button>
+          </div>
+          {exportError && (
+            <p style={{ margin: '12px 0 0', color: '#9d3b2f', fontSize: 13 }}>{exportError}</p>
+          )}
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '24px' }}
@@ -217,7 +258,10 @@ export default function HemingPage() {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
             <span className="xy-seal" style={{ width: 28, height: 28, fontSize: 13 }}>合</span>
-            <span style={{ fontSize: '12px', letterSpacing: '0.18em', color: 'var(--tx-3)' }}>合盘阅读</span>
+            <span style={{ fontSize: '12px', letterSpacing: '0.18em', color: 'var(--tx-3)', flex: 1 }}>合盘阅读</span>
+            <button type="button" className="xy-secondary" onClick={exportChartFile} disabled={exporting}>
+              {exporting ? '正在导出…' : '导出盘面文件'}
+            </button>
           </div>
 
           {!analysis && !analyzing && (

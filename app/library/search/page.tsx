@@ -1,17 +1,18 @@
+'use client';
+
 /**
  * /library/search?q=xxx — 搜索结果页
+ * 查询在浏览器里完成，静态导出（GitHub Pages）也能打开。
  */
 
+import { Suspense } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { searchClassics, getParagraphById } from '@/lib/classics';
 
-export const metadata = {
-  title: '搜索 · 古籍原典库',
-};
-
-export default async function SearchPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
-  const sp = await searchParams;
-  const q = sp.q?.trim() || '';
+function SearchResults() {
+  const sp = useSearchParams();
+  const q = sp.get('q')?.trim() || '';
   const hits = q ? searchClassics(q, 50) : [];
 
   return (
@@ -117,5 +118,13 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
         mark { background: rgba(184,146,42,0.3); color: #8b6a14; padding: 0 2px; border-radius: 2px; font-weight: 600; }
       `}</style>
     </div>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<div style={{ padding: 48, textAlign: 'center', color: 'var(--tx-3)' }}>正在搜索…</div>}>
+      <SearchResults />
+    </Suspense>
   );
 }
