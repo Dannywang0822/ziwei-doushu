@@ -301,7 +301,7 @@ cd ziwei-doushu
 # 安装依赖
 npm install
 
-# 配置环境变量（只看排盘可以跳过；AI 配置仅在你自己实现了 /api/* 接口时才用得上）
+# 配置环境变量（只看排盘可以留空；要 AI 解读再填 XAI_API_KEY）
 cp .env.example .env.local
 
 # 启动开发服务器
@@ -317,7 +317,30 @@ npm test            # 排盘引擎回归（768 盘 × 紫微铁律、夏令时�
 
 每次 push 与 PR 都会在 GitHub Actions 上跑同一套（见 [`.github/workflows/ci.yml`](./.github/workflows/ci.yml)）。
 
-> **注意：开源版不含后端 API 路由。**排盘、命盘展示、合盘起盘都在浏览器里用本仓库的引擎完成，**不需要任何 API Key**。AI 解读（`/api/interpret`）和合盘 AI 分析（`/api/heming`）需要你自己实现接口；没实现之前，这两处会直接提示「开源版不含该接口」，配置 API Key 也不会变成可用（#30 就是这个原因）。
+> **排盘不需要密钥。**命盘、大限和流年都在浏览器里用本仓库的引擎算完。AI 解读（`POST /api/interpret`）和合盘（`POST /api/heming`）走你自己的 OpenAI 兼容接口，默认是 xAI（Grok）。没配 `XAI_API_KEY` 时，盘照常能看，点解读会说明接口还没配置，不会假装已经生成。
+
+### 本仓库的解读接口
+
+这个 fork 在 MIT 引擎上补了自己的接口、提示词和界面（星垣）。上游商业站的断语库、账号和支付仍然不在这里，也没有把《天纪》讲课原文打进解读。
+
+1. 复制环境变量模板，只在本机填写密钥：
+
+```bash
+cp .env.example .env.local
+```
+
+2. `.env.local` 里至少写：
+
+```bash
+AI_PROVIDER=xai
+XAI_API_KEY=你的密钥
+```
+
+`AI_API_KEY` 可以代替 `XAI_API_KEY`。默认请求 `https://api.x.ai/v1/chat/completions`，模型是 [docs.x.ai](https://docs.x.ai/developers/models) 上当前面向对话的 `grok-4.7`。要换模型，设置 `XAI_MODEL` 或 `AI_MODEL`（后者优先）。Base URL 不要自己拼 `/chat/completions`。
+
+3. 启动后打开首页：排盘在 `/chart`，合盘在 `/heming`。解读是流式输出。密钥只留在服务器环境里，不要提交。
+
+换别的 OpenAI 兼容服务时，把 `AI_PROVIDER` 改成 `openai`、`deepseek` 或 `compatible`，并填对应的密钥、Base URL 和模型。说明写在 `.env.example`。
 
 ---
 
@@ -447,7 +470,7 @@ npm test            # 排盘引擎回归（768 盘 × 紫微铁律、夏令时�
 
 **Demo 能跑通的**：出生信息表单、命盘方格与宫位详情、本命 / 大限 / 流年切换、古籍阅读器（全文搜索）、命理百科（14 主星 × 12 宫位）、亮暗主题、移动端适配。
 
-**Demo 里没有的**：线上重做过的交互界面、AI 流式解读、合盘图谱、分享卡片，以及**断语内容本身**（`db-analysis.ts` 是占位实现）。也就是说，Demo 画得出盘，但给不出线上那套解读。
+**Demo 里没有的**：上游商业站那套重做过的交互、断语库本身（`db-analysis.ts` 仍是占位）。这个 fork 另写了星垣界面，以及 `/api/interpret`、`/api/heming` 的流式解读；提示词是新的，不替代上游未公开的 13 维断语库。
 
 ---
 
@@ -456,9 +479,9 @@ npm test            # 排盘引擎回归（768 盘 × 紫微铁律、夏令时�
 | | 内容 |
 |---|---|
 | ✅ **开源** | 排盘引擎（`lib/ziwei/`）、古籍公版原文（`lib/classics/`）、SEO 知识图谱（`lib/seo/`）、Demo 界面、51.8 万样本数据集、13 维解读数据集 v4.0、160 万帧逐帧精读的方法 / 脚本 / 提示词与 17 集公开摘要（`research/nishi-video-reading/`） |
-| ❌ **不开源** | 断语库（`lib/ziwei/db-analysis.ts` 是占位，线上是上万行的 13 主题断语）、AI 解读 prompt、后端 API（`/api/interpret` 等）、用户系统（登录 / 会员 / 支付）、服务端安全（签名、防刷、水印）、部署配置、160 万帧精读的康奈尔笔记正文（私有仓库）与视频画面 / 帧图片 |
+| ❌ **仍不在本仓库** | 上游断语库（`lib/ziwei/db-analysis.ts` 仍是占位）、用户系统、支付、160 万帧精读的笔记正文与视频画面。本 fork 自己写了 `/api/interpret`、`/api/heming` 和提示词，默认调用 xAI 的 OpenAI 兼容接口，不包含上述未公开材料。 |
 
-如果你需要 AI 解读能力，可以参考 `lib/ziwei/patterns.ts` 和 `heming-knowledge.ts` 里的知识库，结合任意 LLM 自行构建 prompt。
+格局和合盘方法仍用 `lib/ziwei/patterns.ts`、`heming-knowledge.ts` 里已经公开的内容，作为模型的上下文。提示词在 `lib/ai/prompts.ts`，是为本界面新写的。
 
 ---
 

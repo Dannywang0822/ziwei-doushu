@@ -148,7 +148,7 @@ export default function BirthForm({ onSubmit, loading, initialData, onFormSave, 
   const errorClr = isDark ? '#f87171' : '#dc2626';
   const panelBg = isDark ? 'rgba(255,255,255,0.03)' : 'rgba(255,250,235,0.7)';
   const panelBorder = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(200,160,60,0.2)';
-  const goldText = isDark ? '#d4a843' : '#7a5008';
+  const goldText = isDark ? '#e07a68' : '#7a2e28';
   const summaryBg = isDark ? 'rgba(37,99,235,0.12)' : 'rgba(37,99,235,0.07)';
   const summaryBorder = isDark ? 'rgba(37,99,235,0.35)' : 'rgba(37,99,235,0.25)';
   const summaryClr = isDark ? 'rgba(147,197,253,0.9)' : 'rgba(37,99,235,0.85)';
@@ -459,10 +459,10 @@ export default function BirthForm({ onSubmit, loading, initialData, onFormSave, 
           background: loading
             ? (isDark ? 'rgba(212,168,67,0.15)' : 'rgba(180,120,20,0.15)')
             : (isDark
-              ? 'linear-gradient(135deg, rgba(180,130,40,0.9), rgba(240,200,80,0.9))'
-              : 'linear-gradient(135deg, #9a6210, #c88020)'),
-          color: loading ? (isDark ? 'rgba(212,168,67,0.4)' : 'rgba(120,80,10,0.4)') : (isDark ? '#08080a' : '#fff8e8'),
-          boxShadow: loading ? 'none' : (isDark ? '0 4px 20px rgba(212,168,67,0.2)' : '0 4px 16px rgba(140,100,20,0.25)'),
+              ? 'linear-gradient(135deg, #9d3b2f, #c45a4a)'
+              : 'linear-gradient(135deg, #7a2d24, #9d3b2f)'),
+          color: loading ? (isDark ? 'rgba(224,122,104,0.4)' : 'rgba(122,45,36,0.4)') : '#fffaf3',
+          boxShadow: loading ? 'none' : '0 8px 20px rgba(157,59,47,0.22)',
           transition: 'all 0.2s',
         }}
       >

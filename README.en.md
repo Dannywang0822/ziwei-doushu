@@ -90,7 +90,7 @@ npm run typecheck    # TypeScript check
 npm test             # charting regression tests
 ```
 
-**No API key is needed for charting.** The open-source version contains **no backend routes**: AI interpretation (`/api/interpret`) and compatibility analysis (`/api/heming`) return 404 until you implement them yourself.
+**No API key is needed for charting.** This fork adds `POST /api/interpret` and `POST /api/heming`. They call an OpenAI-compatible Chat Completions endpoint, defaulting to xAI (`https://api.x.ai/v1`, model `grok-4.7`). Set `XAI_API_KEY` (or `AI_API_KEY`) in `.env.local`. Without a key, charts still render and the AI actions say the API is not configured. See the Chinese README for setup. The upstream commercial reading database is not included.
 
 ## What is not included
 

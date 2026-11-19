@@ -319,7 +319,7 @@ npm test            # 排盘引擎回归（768 盘 × 紫微铁律、夏令时�
 
 每次 push 與 PR 都會在 GitHub Actions 上跑同一套（見 [`.github/workflows/ci.yml`](./.github/workflows/ci.yml)）。
 
-> **注意：開源版不含後端 API 路由。**排盤、命盤展示、合盤起盤都在瀏覽器裡用本倉庫的引擎完成，**不需要任何 API Key**。AI 解讀（`/api/interpret`）和合盤 AI 分析（`/api/heming`）需要你自己實現接口；沒實現之前，這兩處會直接提示「開源版不含該接口」，配置 API Key 也不會變成可用（#30 就是這個原因）。
+> **排盤不需要密鑰。**這個 fork 已加上 `POST /api/interpret` 與 `POST /api/heming`，預設呼叫 xAI（`https://api.x.ai/v1`，模型 `grok-4.7`）。設定 `XAI_API_KEY`（或 `AI_API_KEY`）後才會串流解讀；沒有密鑰時命盤仍可看，按鈕會說明介面未設定。步驟見簡體中文 README。
 
 ---
 
